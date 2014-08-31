@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://DThis.github.io/sitemap.xml 
+Sitemap: http://blog.iTian.mobi/sitemap.xml 
