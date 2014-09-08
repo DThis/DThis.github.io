@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>About me</title>
+
+    <meta name="description" content="个人简介" />
+    <meta name="author" content="tianzhu 田竹" />
+
+    <link href="public/bower_components/impress.js/css/impress-demo.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="../favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+
+<body class="impress-not-supported">
+
+
+<div class="fallback-message">
+    <p>由于你的浏览器较旧，或者是因为手机浏览器不支持某些特性，不能完美展现.</p>
+    <p>本网页美支持较新的桌面浏览器，</p>
+</div>
+
+
+<div id="impress">
+
+    <div id="bored" class="step" data-x="0" data-y="-1500">
+        <h1>About Me</h1>
+        <h1>关于我</h1>
+    </div>
+
+    <div id="bored2" class="step" data-x="0" data-y="2500" data-rotate="180">
+        <p>1987's classic software engineer</p>
+        <p>1987年经典款软件工程师</p>
+        <p>2003 Sinan High School</p>
+        <p>2003 思南中学</p>
+        <p>2006 Beijing University of Chemistry</p>
+        <p>2006 北京化工大学</p>
+    </div>
+
+    <div class="step" data-x="-2000" data-y="0" data-rotate="90">
+    	<h3>Works/商业作品</h3>
+    	<br>
+        <ul style="font-size: 0.55em">
+        	<li>iPad app for manage maintenance of highway / iPad公路管理系统</li>
+        	<li>Implement JSON server by Ruby / Ruby实现JSON服务器</li>
+        	<li>Karaoke app for iPhone / iPhone卡拉OK应用</li>
+        	<li>iPhone O2O app for Bars / iPhone酒吧O2O应用</li>
+        	<li>Maintain & develop Cocos2dx game / 维护以及开发Cocos2dx游戏</li>
+        	<li>Some Html5 Games / 一些浏览器游戏，可用于微信</li>
+        </ul>
+    </div>
+
+    <div class="step" data-x="2000" data-y="0" data-rotate="-90">
+        <h3>Personal experiment/个人实验</h3>
+    	<br>
+        <ul style="font-size: 0.55em">
+        	<li>Chinese segmenter by Objective-C / 使用Objective-C实现中文分词</li>
+        	<li>JSON server by Java / Java实现JSON服务器</li>
+        	<li>JSON server by Node / Node实现JSON服务器</li>
+        	<li>JSON server by Go / Go实现JSON服务器</li>
+        	<li>Html5 online game / Html5在线联网游戏</li>
+        	<li>Acticle Classifier / 文章分类器</li>
+        	<li>Some other Html5 Games / 其它一些浏览器游戏</li>
+        	<li>Web app front-end & back-end / 网页应用前后端</li>
+        	<li>3D visualize / 3D 虚拟</li>
+        </ul>
+    </div>
+
+    <div class="step" data-x="2000" data-y="2000" style="font-size:2em">
+        <p>Imagination and Execution are the most importorant personality</p>        
+        <br>
+        <p>最重要的是要有想象力和执行力</p>
+        
+    </div>
+
+    <div class="step" data-x="3000" data-y="2000" data-z="-10000" data-rotate="90" style="font-size:2em">
+        <p>Imagination make person different</p>
+        <p>Execution make Imaginations come true</p>
+        <p>想象力使人成人，而不是众</p>
+        <p>执行力实现想象</p>
+    </div>
+
+    <div  class="step" data-x="4000" data-y="3000" data-rotate="180" style="font-size:3em">
+        <p>It's also important to hava a solid foundation of knowledge</p>
+        <p>Or imaginations just like dreaming when sleeping</p>
+        <p>坚实的基础知识也一样重要</p>
+        <p>否则想象更像是痴人说梦</p>
+    </div>
+
+    <div  class="step" data-x="-4000" data-y="2325" data-z="-3000" data-rotate="600" style="font-size:2em">
+        <p>I allways do my best to achieve my goals</p>
+        <p>Except when it comes to love</p>
+        <p>I think each is independent</p>
+        <p>Neither should change,and people really don't change</p>
+        <p>无论想做什么事，我都会竭尽全力</p>
+        <p>唯有感情上得事，我会顺其自然</p>
+        <p>人都是独立的</p>
+        <p>没有谁应该改变，也没有人会改变</p>
+    </div>
+
+    <div class="step" data-x="5000" data-y="5000" data-z="0">
+        <p>Thanks</p>
+    </div>
+
+</div>
+
+
+<div class="hint">
+    <p>使用空格或方向键来切换</p>
+</div>
+<script>
+    if ("ontouchstart" in document.documentElement) {
+        document.querySelector(".hint").innerHTML = "<p>使用方向键切换</p>";
+    }
+</script>
+
+
+<script src="public/bower_components/impress.js/js/impress.js"></script>
+<script>impress().init();</script>
+
+
+
+</body>
+</html>
