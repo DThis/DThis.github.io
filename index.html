@@ -21,20 +21,16 @@
 10
 11
 12
-13
-14
-我在山之阳
-树立着
-灌木堆着
-莫名的草没有花朵
-我听到风的声音
-我快些，它就说的大声些
-我慢些，它就讲的小声些
-我停下，它就一声不吭 树沉默着
-灌木沉默着
-草沉默着
-我在山之阳
-我听到风的声音
+一个人就像一座城
+城外有墙
+墙上有东南西北门
+门外有八丈护城河
+有的人
+无意中走上一条道
+不觉中通过层层关卡
+找到一扇大开的入城之门 相同一座城，却好像
+关闭的城门后
+有宝藏
 ">
   
 
@@ -124,6 +120,153 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/25/cheng/">城</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-25T21:11:59+08:00" pubdate data-updated="true">Sep 25<sup>th</sup>, 2014</time>
+        
+        
+          | <a href="/blog/2014/09/25/cheng/#comments">Comments</a>
+         
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">一个人就像一座城
+</span><span class="line">城外有墙
+</span><span class="line">墙上有东南西北门
+</span><span class="line">门外有八丈护城河
+</span><span class="line">有的人
+</span><span class="line">无意中走上一条道
+</span><span class="line">不觉中通过层层关卡
+</span><span class="line">找到一扇大开的入城之门
+</span><span class="line">
+</span><span class="line">相同一座城，却好像
+</span><span class="line">关闭的城门后
+</span><span class="line">有宝藏</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/25/mutex-in-minute/">Mutex in Minute</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-25T20:57:16+08:00" pubdate data-updated="true">Sep 25<sup>th</sup>, 2014</time>
+        
+        
+          | <a href="/blog/2014/09/25/mutex-in-minute/#comments">Comments</a>
+         
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>stl containers are not safe in threads.</p>
+
+<p>Now,with new lambda in C++11.We can make safe containers in minimal codes.</p>
+
+<p>Below is a safe Vector.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="cp">#include &lt;thread&gt;</span>
+</span><span class="line"><span class="cp">#include &lt;vector&gt;</span>
+</span><span class="line"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span><span class="line"><span class="k">class</span> <span class="nc">SafeVec</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">;</span>
+</span><span class="line">    <span class="n">std</span><span class="o">::</span><span class="n">mutex</span> <span class="n">mut</span><span class="p">;</span>
+</span><span class="line"><span class="k">public</span><span class="o">:</span>
+</span><span class="line">    <span class="n">SafeVec</span><span class="p">(){};</span>
+</span><span class="line">    <span class="kt">void</span> <span class="nf">doWith</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;*</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">func</span><span class="p">)</span>
+</span><span class="line">    <span class="p">{</span>
+</span><span class="line">        <span class="n">mut</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+</span><span class="line">        <span class="n">func</span><span class="p">(</span><span class="o">&amp;</span><span class="n">vec</span><span class="p">);</span>
+</span><span class="line">        <span class="n">mut</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+</span><span class="line">    <span class="p">};</span>
+</span><span class="line"><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Key points:</p>
+
+<ul>
+  <li>Create function with a lambda parameter.Call this lambda within mutex context.</li>
+  <li>The lambda’s parameter should be a reference,thus,it can be changed,or just change the copy.</li>
+  <li>No need to create other functions used <code>mut</code>.If you do,Never use it in the parameter lambda func.</li>
+</ul>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -375,6 +518,14 @@ States dealings should be wrapped in functions.It’s more clear,and will reduce
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/25/cheng/">城</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/25/mutex-in-minute/">Mutex in Minute</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/09/08/sounds-of-wind/">风之声</a>

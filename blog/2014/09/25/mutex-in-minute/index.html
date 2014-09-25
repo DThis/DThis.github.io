@@ -5,37 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>风之声 - cout << Blog << endl;</title>
+  <title>Mutex in Minute - cout << Blog << endl;</title>
   <meta name="author" content="TZ">
 
   
-  <meta name="description" content="1
+  <meta name="description" content="stl containers are not safe in threads. Now,with new lambda in C++11.We can make safe containers in minimal codes. Below is a safe Vector. 1
 2
 3
 4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-我在山之阳
-树立着
-灌木堆着
-莫名的草没有花朵
-我听到风的声音
-我快些，它就说的大声些
-我慢些，它就讲的小声些
-我停下，它就一声不吭 树沉默着
-灌木沉默着
-草沉默着
-我在山之阳
-我听到风的声音
-">
+5 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -44,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.iTian.mobi/blog/2014/09/08/sounds-of-wind">
+  <link rel="canonical" href="http://blog.iTian.mobi/blog/2014/09/25/mutex-in-minute">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="cout << Blog << endl;" type="application/atom+xml">
@@ -127,7 +105,7 @@
   
   <header>
     
-      <h1 class="entry-title">风之声</h1>
+      <h1 class="entry-title">Mutex in Minute</h1>
     
     
       <p class="meta">
@@ -143,7 +121,7 @@
   
 
 
-<time datetime="2014-09-08T22:39:01+08:00" pubdate data-updated="true">Sep 8<sup>th</sup>, 2014</time>
+<time datetime="2014-09-25T20:57:16+08:00" pubdate data-updated="true">Sep 25<sup>th</sup>, 2014</time>
         
         
           | <a href="#comments">Comments</a>
@@ -153,7 +131,13 @@
   </header>
 
 
-<div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="entry-content"><p>stl containers are not safe in threads.</p>
+
+<p>Now,with new lambda in C++11.We can make safe containers in minimal codes.</p>
+
+<p>Below is a safe Vector.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -167,20 +151,33 @@
 <span class="line-number">12</span>
 <span class="line-number">13</span>
 <span class="line-number">14</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">我在山之阳
-</span><span class="line">树立着
-</span><span class="line">灌木堆着
-</span><span class="line">莫名的草没有花朵
-</span><span class="line">我听到风的声音
-</span><span class="line">我快些，它就说的大声些
-</span><span class="line">我慢些，它就讲的小声些
-</span><span class="line">我停下，它就一声不吭
-</span><span class="line">
-</span><span class="line">树沉默着
-</span><span class="line">灌木沉默着
-</span><span class="line">草沉默着
-</span><span class="line">我在山之阳
-</span><span class="line">我听到风的声音</span></code></pre></td></tr></table></div></figure></notextile></div>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="cp">#include &lt;thread&gt;</span>
+</span><span class="line"><span class="cp">#include &lt;vector&gt;</span>
+</span><span class="line"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span><span class="line"><span class="k">class</span> <span class="nc">SafeVec</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">;</span>
+</span><span class="line">    <span class="n">std</span><span class="o">::</span><span class="n">mutex</span> <span class="n">mut</span><span class="p">;</span>
+</span><span class="line"><span class="k">public</span><span class="o">:</span>
+</span><span class="line">    <span class="n">SafeVec</span><span class="p">(){};</span>
+</span><span class="line">    <span class="kt">void</span> <span class="nf">doWith</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;*</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">func</span><span class="p">)</span>
+</span><span class="line">    <span class="p">{</span>
+</span><span class="line">        <span class="n">mut</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+</span><span class="line">        <span class="n">func</span><span class="p">(</span><span class="o">&amp;</span><span class="n">vec</span><span class="p">);</span>
+</span><span class="line">        <span class="n">mut</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+</span><span class="line">    <span class="p">};</span>
+</span><span class="line"><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Key points:</p>
+
+<ul>
+  <li>Create function with a lambda parameter.Call this lambda within mutex context.</li>
+  <li>The lambda’s parameter should be a reference,thus,it can be changed,or just change the copy.</li>
+  <li>No need to create other functions used <code>mut</code>.If you do,Never use it in the parameter lambda func.</li>
+</ul>
 </div>
 
 
@@ -203,8 +200,14 @@
   
 
 
-<time datetime="2014-09-08T22:39:01+08:00" pubdate data-updated="true">Sep 8<sup>th</sup>, 2014</time>
+<time datetime="2014-09-25T20:57:16+08:00" pubdate data-updated="true">Sep 25<sup>th</sup>, 2014</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c-plus-plus/'>c++</a>, <a class='category' href='/blog/categories/thread/'>thread</a>
+  
+</span>
 
 
     </p>
@@ -218,10 +221,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/09/04/state-machine-in-game-development/" title="Previous Post: State Machine in Game Development">&laquo; State Machine in Game Development</a>
+        <a class="basic-alignment left" href="/blog/2014/09/08/sounds-of-wind/" title="Previous Post: 风之声">&laquo; 风之声</a>
       
       
-        <a class="basic-alignment right" href="/blog/2014/09/25/mutex-in-minute/" title="Next Post: Mutex in Minute">Mutex in Minute &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2014/09/25/cheng/" title="Next Post: 城">城 &raquo;</a>
       
     </p>
   </footer>
@@ -231,7 +234,7 @@
   <section>
     <h1>Comments</h1>
     <div id="comments" aria-live="polite"><!--Duoshuo Comment BEGIN -->
-<div class="ds-thread" data-title="风之声"></div>
+<div class="ds-thread" data-title="Mutex in Minute"></div>
 <script type="text/javascript">
   var duoshuoQuery = {short_name:"itianzhu"};
   (function() {

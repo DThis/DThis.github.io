@@ -4,7 +4,7 @@
   <title><![CDATA[cout << Blog << endl;]]></title>
   <link href="http://blog.iTian.mobi/atom.xml" rel="self"/>
   <link href="http://blog.iTian.mobi/"/>
-  <updated>2014-09-08T22:48:45+08:00</updated>
+  <updated>2014-09-25T21:12:51+08:00</updated>
   <id>http://blog.iTian.mobi/</id>
   <author>
     <name><![CDATA[TZ]]></name>
@@ -12,6 +12,93 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[城]]></title>
+    <link href="http://blog.iTian.mobi/blog/2014/09/25/cheng/"/>
+    <updated>2014-09-25T21:11:59+08:00</updated>
+    <id>http://blog.iTian.mobi/blog/2014/09/25/cheng</id>
+    <content type="html"><![CDATA[<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">一个人就像一座城
+</span><span class="line">城外有墙
+</span><span class="line">墙上有东南西北门
+</span><span class="line">门外有八丈护城河
+</span><span class="line">有的人
+</span><span class="line">无意中走上一条道
+</span><span class="line">不觉中通过层层关卡
+</span><span class="line">找到一扇大开的入城之门
+</span><span class="line">
+</span><span class="line">相同一座城，却好像
+</span><span class="line">关闭的城门后
+</span><span class="line">有宝藏</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mutex in Minute]]></title>
+    <link href="http://blog.iTian.mobi/blog/2014/09/25/mutex-in-minute/"/>
+    <updated>2014-09-25T20:57:16+08:00</updated>
+    <id>http://blog.iTian.mobi/blog/2014/09/25/mutex-in-minute</id>
+    <content type="html"><![CDATA[<p>stl containers are not safe in threads.</p>
+
+<p>Now,with new lambda in C++11.We can make safe containers in minimal codes.</p>
+
+<p>Below is a safe Vector.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="cp">#include &lt;thread&gt;</span>
+</span><span class="line"><span class="cp">#include &lt;vector&gt;</span>
+</span><span class="line"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span><span class="line"><span class="k">class</span> <span class="nc">SafeVec</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">;</span>
+</span><span class="line">    <span class="n">std</span><span class="o">::</span><span class="n">mutex</span> <span class="n">mut</span><span class="p">;</span>
+</span><span class="line"><span class="k">public</span><span class="o">:</span>
+</span><span class="line">    <span class="n">SafeVec</span><span class="p">(){};</span>
+</span><span class="line">    <span class="kt">void</span> <span class="nf">doWith</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;*</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">func</span><span class="p">)</span>
+</span><span class="line">    <span class="p">{</span>
+</span><span class="line">        <span class="n">mut</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+</span><span class="line">        <span class="n">func</span><span class="p">(</span><span class="o">&amp;</span><span class="n">vec</span><span class="p">);</span>
+</span><span class="line">        <span class="n">mut</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+</span><span class="line">    <span class="p">};</span>
+</span><span class="line"><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Key points:</p>
+
+<ul>
+  <li>Create function with a lambda parameter.Call this lambda within mutex context.</li>
+  <li>The lambda’s parameter should be a reference,thus,it can be changed,or just change the copy.</li>
+  <li>No need to create other functions used <code>mut</code>.If you do,Never use it in the parameter lambda func.</li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[风之声]]></title>
