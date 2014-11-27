@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Crossplatform | cout << Blog << endl;]]></title>
+  <link href="http://blog.iTian.mobi/blog/categories/crossplatform/atom.xml" rel="self"/>
+  <link href="http://blog.iTian.mobi/"/>
+  <updated>2014-11-27T22:21:46+08:00</updated>
+  <id>http://blog.iTian.mobi/</id>
+  <author>
+    <name><![CDATA[TZ]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ionic First Look]]></title>
+    <link href="http://blog.iTian.mobi/blog/2014/11/27/ionic-first-look/"/>
+    <updated>2014-11-27T22:04:40+08:00</updated>
+    <id>http://blog.iTian.mobi/blog/2014/11/27/ionic-first-look</id>
+    <content type="html"><![CDATA[<p>Basicly,Ionic is a framework use html port to diffirent platforms.Include web/iOS/Android.Though,iOS/Android can simplely use web browser to check ionic based web sites.Also,Ionic use Cordova port to native for iOS/Android.Ionic also use AngulerJS,and build some useful directors and css styles.</p>
+
+<h3 id="install-ionic">Install Ionic</h3>
+
+<p>Before install Ionic,it’s a prerequisite to install Node.js first.Then just use npm</p>
+
+<p><code>bash
+npm install -g ionic
+npm install -g cordova
+</code></p>
+
+<h3 id="have-fun">Have fun</h3>
+
+<p><code>bash
+#start a new project,template name could be blank slidemenu ...
+ionic start NewProjectName TemplateName 
+#server via http
+cd NewProjectName
+ionic serve
+#you may need to choose a local address
+#now it could be check in the browser
+#port to iOS,you may need start serve first
+quit
+ionic platform add ios
+ionic build ios
+#run in emulator,you may need install ios-sim
+npm install -g ios-sim
+ionic emulate ios
+#now it's runs in iOS emulate
+#run in device,you may need install ios-sim
+npm install -g ios-deploy
+ionic run ios
+</code></p>
+
+<p>So.It’s easy to test our blank project in both emulators and devices.</p>
+
+<h3 id="a-bit-detail">A bit detail</h3>
+
+<p>Look at the project files</p>
+
+<p><code>bash
+user$ ls
+bower.json gulpfile.js ionic.project platforms scss
+config.xml hooks package.json plugins www
+</code></p>
+
+<p>So.It’s obviousely use bower/gulp/scss.
+And all app logic implement files are in www,as cordova used.</p>
+
+<h3 id="more">More</h3>
+
+<p>All Basicly platform specified works are done by Ionic.
+We can just do the rest html/css/javascript things.</p>
+]]></content>
+  </entry>
+  
+</feed>

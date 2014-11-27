@@ -4,7 +4,7 @@
   <title><![CDATA[cout << Blog << endl;]]></title>
   <link href="http://blog.iTian.mobi/atom.xml" rel="self"/>
   <link href="http://blog.iTian.mobi/"/>
-  <updated>2014-09-25T21:12:51+08:00</updated>
+  <updated>2014-11-27T22:21:46+08:00</updated>
   <id>http://blog.iTian.mobi/</id>
   <author>
     <name><![CDATA[TZ]]></name>
@@ -12,6 +12,185 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ionic First Look]]></title>
+    <link href="http://blog.iTian.mobi/blog/2014/11/27/ionic-first-look/"/>
+    <updated>2014-11-27T22:04:40+08:00</updated>
+    <id>http://blog.iTian.mobi/blog/2014/11/27/ionic-first-look</id>
+    <content type="html"><![CDATA[<p>Basicly,Ionic is a framework use html port to diffirent platforms.Include web/iOS/Android.Though,iOS/Android can simplely use web browser to check ionic based web sites.Also,Ionic use Cordova port to native for iOS/Android.Ionic also use AngulerJS,and build some useful directors and css styles.</p>
+
+<h3 id="install-ionic">Install Ionic</h3>
+
+<p>Before install Ionic,it’s a prerequisite to install Node.js first.Then just use npm</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">npm install -g ionic
+</span><span class="line">npm install -g cordova
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="have-fun">Have fun</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#start a new project,template name could be blank slidemenu ...</span>
+</span><span class="line">ionic start NewProjectName TemplateName
+</span><span class="line"><span class="c">#server via http</span>
+</span><span class="line"><span class="nb">cd </span>NewProjectName
+</span><span class="line">ionic serve
+</span><span class="line"><span class="c">#you may need to choose a local address</span>
+</span><span class="line"><span class="c">#now it could be check in the browser</span>
+</span><span class="line"><span class="c">#port to iOS,you may need start serve first</span>
+</span><span class="line">quit
+</span><span class="line">ionic platform add ios
+</span><span class="line">ionic build ios
+</span><span class="line"><span class="c">#run in emulator,you may need install ios-sim</span>
+</span><span class="line">npm install -g ios-sim
+</span><span class="line">ionic emulate ios
+</span><span class="line"><span class="c">#now it&#39;s runs in iOS emulate</span>
+</span><span class="line"><span class="c">#run in device,you may need install ios-sim</span>
+</span><span class="line">npm install -g ios-deploy
+</span><span class="line">ionic run ios
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>So.It’s easy to test our blank project in both emulators and devices.</p>
+
+<h3 id="a-bit-detail">A bit detail</h3>
+
+<p>Look at the project files</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">user<span class="nv">$ </span>ls
+</span><span class="line">bower.json gulpfile.js ionic.project platforms scss
+</span><span class="line">config.xml hooks package.json plugins www
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>So.It’s obviousely use bower/gulp/scss.
+And all app logic implement files are in www,as cordova used.</p>
+
+<h3 id="more">More</h3>
+
+<p>All Basicly platform specified works are done by Ionic.
+We can just do the rest html/css/javascript things.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Use Curry for Error Templatingng]]></title>
+    <link href="http://blog.iTian.mobi/blog/2014/11/27/use-curry-for-error-templatingng/"/>
+    <updated>2014-11-27T21:58:04+08:00</updated>
+    <id>http://blog.iTian.mobi/blog/2014/11/27/use-curry-for-error-templatingng</id>
+    <content type="html"><![CDATA[<p>When generating error messages,most are same,but each have a bit diffirents.
+It could be simplyed by template them.</p>
+
+<p><a href="http://blog.iTian.mobi/files/scala.zip">Scala Demo</a>.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">package</span> <span class="nn">models</span>
+</span><span class="line">
+</span><span class="line"><span class="k">import</span> <span class="nn">play.api.libs.json._</span>
+</span><span class="line"><span class="k">import</span> <span class="nn">play.api.libs.functional.syntax._</span>
+</span><span class="line">
+</span><span class="line"><span class="k">case</span> <span class="k">class</span> <span class="nc">Error</span><span class="o">(</span><span class="n">code</span> <span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">message</span> <span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">detail</span> <span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">None</span><span class="o">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">object</span> <span class="nc">Error</span> <span class="o">{</span>
+</span><span class="line"><span class="k">implicit</span> <span class="k">val</span> <span class="n">format</span> <span class="k">=</span> <span class="nc">Json</span><span class="o">.</span><span class="n">format</span><span class="o">[</span><span class="kt">Error</span><span class="o">]</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="nc">NameOrPw</span> <span class="k">=</span> <span class="nc">Error</span><span class="o">(</span><span class="mi">10001</span><span class="o">,</span><span class="s">&quot;用户名或密码错误&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="k">val</span> <span class="nc">CantGenerateToken</span> <span class="k">=</span> <span class="nc">Error</span><span class="o">(</span><span class="mi">10002</span><span class="o">,</span><span class="s">&quot;无法创建key&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="k">val</span> <span class="nc">RequestData</span> <span class="k">=</span> <span class="nc">Error</span><span class="o">(</span><span class="mi">10003</span><span class="o">,</span><span class="s">&quot;请求数据错误&quot;</span><span class="o">,</span> <span class="k">_</span> <span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span>
+</span><span class="line"><span class="k">val</span> <span class="nc">NotLogin</span> <span class="k">=</span> <span class="nc">Error</span><span class="o">(</span><span class="mi">10004</span><span class="o">,</span><span class="s">&quot;没有登录,或者uid或者key错误&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="k">val</span> <span class="nc">UidOrKey</span> <span class="k">=</span> <span class="nc">Error</span><span class="o">(</span><span class="mi">10005</span><span class="o">,</span><span class="s">&quot;uid或者key错误&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="k">val</span> <span class="nc">DataBase</span> <span class="k">=</span> <span class="nc">Error</span><span class="o">(</span><span class="mi">10006</span><span class="o">,</span><span class="s">&quot;数据库错误&quot;</span><span class="o">,</span> <span class="k">_</span> <span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>So,I build a base case class.Then I initialize some objects or partial objects of it.
+<code>NamaOrPw</code> is a object,and <code>RequestData</code> is a partial object.
+Now if I want use <code>RequestData</code> I must pass it a parameter.And it’s the detail.</p>
+
+<p><a href="http://blog.iTian.mobi/files/node.zip">Javascript Demo</a>.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">var</span> <span class="nb">Error</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span><span class="nx">message</span><span class="p">,</span><span class="nx">detail</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line"><span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span><span class="p">;</span>
+</span><span class="line"><span class="k">this</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="nx">type</span><span class="p">;</span>
+</span><span class="line"><span class="k">this</span><span class="p">.</span><span class="nx">detail</span> <span class="o">=</span> <span class="nx">detail</span><span class="p">;</span>
+</span><span class="line"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">type</span><span class="p">);</span>
+</span><span class="line"><span class="p">};</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">var</span> <span class="nx">part</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span><span class="nx">message</span><span class="p">){</span>
+</span><span class="line"><span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">detail</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line"><span class="k">return</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span><span class="nx">message</span><span class="p">,</span><span class="nx">detail</span><span class="p">);</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="p">};</span>
+</span><span class="line">
+</span><span class="line"><span class="nb">Error</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">Type</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="line"><span class="nx">connection</span> <span class="o">:</span> <span class="nx">part</span><span class="p">(</span><span class="mi">10001</span><span class="p">,</span><span class="s2">&quot;连接错误&quot;</span><span class="p">),</span>
+</span><span class="line"><span class="nx">database</span> <span class="o">:</span> <span class="nx">part</span><span class="p">(</span><span class="mi">10002</span><span class="p">,</span> <span class="s2">&quot;数据库错误&quot;</span><span class="p">),</span>
+</span><span class="line"><span class="nx">request</span> <span class="o">:</span> <span class="nx">part</span><span class="p">(</span><span class="mi">10003</span><span class="p">,</span> <span class="s2">&quot;请求错误&quot;</span><span class="p">)</span>
+</span><span class="line"><span class="p">};</span>
+</span><span class="line">
+</span><span class="line"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nb">Error</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>So I use <code>part</code> to return a function to initialize <code>Error</code> object.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[城]]></title>

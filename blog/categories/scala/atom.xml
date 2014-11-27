@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Scala | cout << Blog << endl;]]></title>
+  <link href="http://blog.iTian.mobi/blog/categories/scala/atom.xml" rel="self"/>
+  <link href="http://blog.iTian.mobi/"/>
+  <updated>2014-11-27T22:21:46+08:00</updated>
+  <id>http://blog.iTian.mobi/</id>
+  <author>
+    <name><![CDATA[TZ]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Use Curry for Error Templatingng]]></title>
+    <link href="http://blog.iTian.mobi/blog/2014/11/27/use-curry-for-error-templatingng/"/>
+    <updated>2014-11-27T21:58:04+08:00</updated>
+    <id>http://blog.iTian.mobi/blog/2014/11/27/use-curry-for-error-templatingng</id>
+    <content type="html"><![CDATA[<p>When generating error messages,most are same,but each have a bit diffirents.
+It could be simplyed by template them.</p>
+
+<p><a href="/files/scala.zip">Scala Demo</a>.</p>
+
+<p>&#8220;` scala
+package models</p>
+
+<p>import play.api.libs.json._
+import play.api.libs.functional.syntax._</p>
+
+<p>case class Error(code : Int, message : String, detail : Option[String] = None)</p>
+
+<p>object Error {
+implicit val format = Json.format[Error]</p>
+
+<p>val NameOrPw = Error(10001,”用户名或密码错误”)
+val CantGenerateToken = Error(10002,”无法创建key”)
+val RequestData = Error(10003,”请求数据错误”, _ : Option[String])
+val NotLogin = Error(10004,”没有登录,或者uid或者key错误”)
+val UidOrKey = Error(10005,”uid或者key错误”)
+val DataBase = Error(10006,”数据库错误”, _ : Option[String])
+}
+&#8220;`</p>
+
+<p>So,I build a base case class.Then I initialize some objects or partial objects of it.
+<code>NamaOrPw</code> is a object,and <code>RequestData</code> is a partial object.
+Now if I want use <code>RequestData</code> I must pass it a parameter.And it’s the detail.</p>
+
+<p><a href="/files/node.zip">Javascript Demo</a>.</p>
+
+<p>&#8220;` javascript
+var Error = function (type,message,detail) {
+this.message = message;
+this.type = type;
+this.detail = detail;
+console.log(type);
+};</p>
+
+<p>var part = function (type,message){
+return function (detail) {
+return new Error(type,message,detail);
+}
+};</p>
+
+<p>Error.<strong>proto</strong>.Type = {
+connection : part(10001,”连接错误”),
+database : part(10002, “数据库错误”),
+request : part(10003, “请求错误”)
+};</p>
+
+<p>module.exports = Error;
+&#8220;`</p>
+
+<p>So I use <code>part</code> to return a function to initialize <code>Error</code> object.</p>
+]]></content>
+  </entry>
+  
+</feed>
